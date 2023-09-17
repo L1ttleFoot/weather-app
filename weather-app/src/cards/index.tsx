@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Card } from './components/card'
 import { AddCard } from './components/addCard'
 import { fetchData,fetchData1 } from '../functions/requests'
+import { Input } from './components/input'
+import Button from './components/button/button'
+import { observer } from 'mobx-react-lite'
+import cards from '../store/cards'
 
 export interface ICard {
     weather: string,
@@ -13,30 +17,12 @@ export interface ICard {
     removeCard?: (city: string) => void
 }
 
-export const Cards = () => {
+export const Cards: React.FC = observer(() => {
 
     useEffect(()=>{
         //fetchData()
-        fetchData1()
+        //fetchData1()
     },[])
-
-    const a = {
-        weather: 'Sunny',
-        temperature: 8,
-        city: 'London',
-        wind: 'SW 14 mph',
-        humidity: 80,
-        pressure: 30.19
-    }
-
-    const b = {
-        weather: 'Sunny',
-        temperature: 8,
-        city: 'Irkutsk',
-        wind: 'SW 14 mph',
-        humidity: 80,
-        pressure: 30.19
-    }
 
     const c = {
         weather: 'Sunny',
@@ -47,23 +33,28 @@ export const Cards = () => {
         pressure: 30.19
     }
 
-    const [cardsList, setCardsList] = useState<ICard[]>([a,b,c])
-
     const onClickHandler = (): void => {
         console.log('click')
-        setCardsList(prev => [...prev, c])
+        cards.addCard(c)
     }
 
-    const removeCard = (city: string): void => {
-        setCardsList(prev => prev.filter(item => item.city !== city))
+    const remove = (city: string): void => {
+        cards.removeCard(city)
     }
 
     return (
-        <div className='cards'>
-            {cardsList.map((item, index) => 
-                <Card key={index} {...item} removeCard={removeCard}/>
-            )}
-            <AddCard onClick={onClickHandler}/>
-        </div>
+        <>
+            <div className='control'>
+                <Input placeholder='city...'/> 
+                <Button>SUBBMITE</Button>
+            </div>
+            
+            <div className='cards'>
+                {cards.cards.map((item, index) => 
+                    <Card key={index} {...item} removeCard={remove}/>
+                )}
+                <AddCard onClick={onClickHandler}/>
+            </div>
+        </>
     )
-}
+})

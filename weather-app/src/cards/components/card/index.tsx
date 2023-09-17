@@ -1,8 +1,9 @@
 import React from 'react'
 import { ICard } from '../..'
 import { IoClose, IoSunnyOutline } from 'react-icons/io5';
+import { observer } from 'mobx-react-lite';
 
-export const Card: React.FC<ICard> = (props) => {
+export const Card: React.FC<ICard> = observer((props) => {
 
     const {weather, temperature, city, wind, humidity, pressure, removeCard} = props
    
@@ -32,4 +33,4 @@ export const Card: React.FC<ICard> = (props) => {
             </div>
         </div>
     )
-}
+})

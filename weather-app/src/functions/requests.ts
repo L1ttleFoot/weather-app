@@ -1,5 +1,5 @@
 
-const apiKey = '7d2d719fa21be55783619a3de6354129'
+const apiKey = 'c164ef80256768fc45b373c2603d08a4'
 
 //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
