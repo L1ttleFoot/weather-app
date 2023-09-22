@@ -9,11 +9,9 @@ interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: React.FC <IInput> = observer((props) => {
 
-    console.log(query.query)
-
     return (
         <div className={classes.input}>
-            <input {...props} value={query.query} onChange={(e) => query.setQuery(e.target.value)}/>
+            <input list='citys' {...props} value={query.query} onChange={(e) => query.setQuery(e.target.value)}/>
         </div>
     )
 })

@@ -1,34 +1,43 @@
 import React from 'react'
-import { ICard } from '../..'
-import { IoClose, IoSunnyOutline } from 'react-icons/io5';
+import cards, { ICard } from '../../../store/cards';
+import { IoClose } from 'react-icons/io5';
 import { observer } from 'mobx-react-lite';
+import styles from './card.module.css'
+import { windDeg } from '../../../functions/windDeg';
+import { WeatherIcon } from '../../../consts/consts';
 
 export const Card: React.FC<ICard> = observer((props) => {
 
-    const {weather, temperature, city, wind, humidity, pressure, removeCard} = props
-   
+    const {weather, main, name, wind} = props
+
+    const removeHandler = (city: string): void => {
+        cards.removeCard(city)
+    }
+
+    const direction = windDeg(wind.deg)
+
     return (
-        <div className='card'>
-            <div className='top'>
-                <IoClose className='closeIcon' color='grey' onClick={()=>removeCard?.(city)}/>
-                <IoSunnyOutline className='weatherIcon'/>
-                <div>{weather}</div>
-                <div style={{fontSize:30}}>{temperature}&deg;</div>
-                <div>{city}</div>
+        <div className={styles.card}>
+            <div className={styles.top}>
+                <IoClose className={styles.closeIcon} onClick={()=>removeHandler(name)}/>
+                <WeatherIcon className={styles.weatherIcon} weather={weather[0].main}/>
+                <div>{weather[0].main}</div>
+                <div style={{fontSize:30}}>{main.temp}&deg;</div>
+                <div>{name}</div>
             </div>
             
-            <div className='bottom'>
-                <div className='wind'>
+            <div className={styles.bottom}>
+                <div className={styles.wind}>
                     <div style={{fontWeight: 100}}>Wind</div>
-                    <div style={{fontWeight: 500}}>{wind}</div>
+                    <div style={{fontWeight: 500}}>{wind.speed} {direction}</div>
                 </div>
-                <div className='humidity'>
+                <div className={styles.humidity}>
                     <div style={{fontWeight: 100}}>Humidity</div>
-                    <div style={{fontWeight: 500}}>{humidity}%</div>
+                    <div style={{fontWeight: 500}}>{main.humidity}%</div>
                 </div>
-                <div className='pressure'>
+                <div className={styles.pressure}>
                     <div style={{fontWeight: 100}}>Pressure</div>
-                    <div style={{fontWeight: 500}}>{pressure} in</div>
+                    <div style={{fontWeight: 500}}>{main.pressure}</div>
                 </div>
             </div>
         </div>

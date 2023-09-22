@@ -1,48 +1,47 @@
 import { makeAutoObservable } from "mobx";
+import { ICity } from "./cities";
+
+export interface ICard {
+    weather: {main: string}[],
+    main: {
+        temp: number,
+        humidity: number
+        pressure: number,
+    },
+    name: string,
+    wind: {
+        speed: number,
+        deg: number
+    }
+}
 
 class Cards {
 
-    cards =  [{
-        weather: 'Sunny',
-        temperature: 8,
-        city: 'London',
-        wind: 'SW 14 mph',
-        humidity: 80,
-        pressure: 30.19
-    },
-     {
-        weather: 'Sunny',
-        temperature: 8,
-        city: 'Irkutsk',
-        wind: 'SW 14 mph',
-        humidity: 80,
-        pressure: 30.19
-    },
-     {
-        weather: 'Sunny',
-        temperature: 8,
-        city: 'Moscow',
-        wind: 'SW 14 mph',
-        humidity: 80,
-        pressure: 30.19
-    }]
+    cards: ICard[] = []
 
     constructor(){
         makeAutoObservable(this)
     }
 
-    addCard(value: any) {
-        console.log(value)
-        console.log(this.cards)
+    addCard(value: ICard) {
         this.cards.push(value)
     }
 
+    fetchCard(city: ICity) {
+
+        const apiKey = process.env.REACT_APP_WEATHER_API_KEY
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${city.lat}&lon=${city.lon}&appid=${apiKey}`)
+            .then(res => res.json())
+            .then(data => this.cards.push(data))
+    }
+
     removeCard(value: string) {
-        console.log(value)
-        console.log(this.cards.filter(item => item.city !== value))
-        this.cards = this.cards.filter(item => item.city !== value)
+        this.cards = this.cards.filter(item => item.name !== value)
     }
 
 }
 
-export default new Cards()
+const myCards = new Cards()
+
+export default myCards

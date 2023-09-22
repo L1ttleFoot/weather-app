@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 class Query {
 
-    query = ''
+    query = 'london'
 
     constructor(){
         makeAutoObservable(this)
@@ -14,4 +14,6 @@ class Query {
 
 }
 
-export default new Query()
+const myQuery = new Query()
+
+export default myQuery

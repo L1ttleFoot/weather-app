@@ -1,5 +1,5 @@
 
-const apiKey = 'c164ef80256768fc45b373c2603d08a4'
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
 //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 

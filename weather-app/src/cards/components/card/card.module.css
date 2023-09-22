@@ -1,0 +1,63 @@
+.card {
+    width: 240px;
+    height: 270px;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.top {
+    height: 100%;
+    width: calc(100% - 40px);
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    background: #fee9a6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.closeIcon {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    cursor: pointer;
+    transition: all .1s linear;
+    color: grey
+}
+
+.closeIcon:hover {
+    transform: scale(1.2);
+}
+
+/* #E5C852
+#2A99B7 */
+
+.weatherIcon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 90px;
+    color: white
+}
+
+.bottom {
+    height: 100%;
+    width: calc(100% - 40px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 0 8px 8px;
+    background: white;
+}
+
+.wind, .humidity, .pressure {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
