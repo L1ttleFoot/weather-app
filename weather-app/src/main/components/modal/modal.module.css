@@ -6,11 +6,12 @@
     top: 0;
     left: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     opacity: 0;
     z-index: 1000;
     pointer-events: none;
+    transition: 0.3s;
 }
 
 .modal.active {
@@ -23,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 5%;
     padding: 20px;
     border-radius: 12px;
     background-color: white;

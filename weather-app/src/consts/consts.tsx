@@ -1,18 +1,12 @@
 import { IoCloudyOutline, IoSunnyOutline, IoRainyOutline } from 'react-icons/io5';
-
-export const weatherStyle = {
-    clear: {icon: '', color: '#fee9a6'},
-    clouds: {icon: '', color: '#dee9ed'},
-    rain: {icon: '', color: '#ccf0fe'},
-}
+import { RiMistFill } from 'react-icons/ri';
 
 export const WeatherIcon = ({weather, ...props}:any) => {
-
-    console.log(weather)
 
     if (weather === 'Clear') return <IoSunnyOutline {...props}/>
     if (weather === 'Clouds') return <IoCloudyOutline {...props}/>
     if (weather === 'Rain') return <IoRainyOutline {...props}/>
-   
+    if (weather === 'Mist' || weather === 'Fog') return <RiMistFill {...props}/>
+
     return <div/>
 }

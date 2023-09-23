@@ -19,7 +19,13 @@ export const Input: React.FC <IInput> = observer((props) => {
 
     return (
         <div className={styles.myInput}>
-            <input className={styles.input} list='citys' {...props} value={query.query} onKeyUp={(e)=>onKeyUpHandler(e)} onChange={(e) => query.setQuery(e.target.value)}/>
+            <input 
+                {...props} 
+                className={styles.input}
+                value={query.query} 
+                onKeyUp={(e)=>onKeyUpHandler(e)} 
+                onChange={(e) => query.setQuery(e.target.value)}
+            />
             <IoSearchOutline className={styles.seatchButton} onClick={()=>cities.fetchCities(query.query)}/>
         </div>
     )

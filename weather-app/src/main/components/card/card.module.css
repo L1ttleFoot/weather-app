@@ -32,6 +32,10 @@
     background: #dee9ed;
 }
 
+.top-Mist, .top-Fog{
+    background: rgba(0, 0, 0, 0.2);
+}
+
 .closeIcon {
     position: absolute;
     right: 3px;
