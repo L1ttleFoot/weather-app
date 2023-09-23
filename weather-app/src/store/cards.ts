@@ -18,6 +18,7 @@ export interface ICard {
 class Cards {
 
     cards: ICard[] = []
+    statusCards = 200
 
     constructor(){
         makeAutoObservable(this)

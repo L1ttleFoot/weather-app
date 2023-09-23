@@ -2,17 +2,11 @@ import React from 'react'
 import { Card } from './components/card'
 import { AddCard } from './components/addCard'
 import { Input } from './components/input'
-import Button from './components/button/button'
 import { observer } from 'mobx-react-lite'
 import cards from '../store/cards'
 import cities from '../store/cities'
-import query from '../store/query'
 
 export const Cards: React.FC = observer(() => {
-
-    console.log(cities.cities.map(item=>item))
-
-    console.log(cards.cards.map(item => item))
 
     const onClickHandler = (): void => {
         console.log('add')
@@ -32,7 +26,6 @@ export const Cards: React.FC = observer(() => {
 
             <div className='control'>
                 <Input placeholder='city...'/> 
-                <Button onClick={()=>cities.fetchCities(query.query)}>SUBBMITE</Button>
             </div>
             
             <div className='cards'>

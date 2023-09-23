@@ -18,7 +18,7 @@ export const Card: React.FC<ICard> = observer((props) => {
 
     return (
         <div className={styles.card}>
-            <div className={styles.top}>
+            <div className={[styles.top, styles[`top-${weather[0].main}`]].join(' ')}>
                 <IoClose className={styles.closeIcon} onClick={()=>removeHandler(name)}/>
                 <WeatherIcon className={styles.weatherIcon} weather={weather[0].main}/>
                 <div>{weather[0].main}</div>

@@ -10,6 +10,7 @@ export interface ICity {
 class Cities {
 
     cities: ICity[] = []
+    statusCities = 200
     
     constructor(){
         makeAutoObservable(this)

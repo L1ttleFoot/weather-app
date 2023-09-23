@@ -2,14 +2,17 @@ import { makeAutoObservable } from "mobx";
 
 class Query {
 
-    query = 'london'
+    query = 'London'
 
     constructor(){
         makeAutoObservable(this)
     }
 
     setQuery(value: string) {
-        this.query = value
+
+        const capitalizeValue = value.charAt(0).toUpperCase() + value.slice(1);
+
+        this.query = capitalizeValue
     }
 
 }

@@ -1,7 +1,7 @@
 export const windDeg = (deg: number): string  => {
 
-    if(deg > 292.5 && deg < 22.5) return 'N'
-    if(22.5<= deg && deg < 67.5) return 'NE'
+    if((0 <= deg && deg < 22.5) || (337.5 < deg && deg <= 360)) return 'N'
+    if(22.5 <= deg && deg < 67.5) return 'NE'
     if(67.5 <= deg && deg < 112.5) return 'E'
     if(112.5 <= deg && deg < 157.5) return 'SE'
     if(157.5 <= deg && deg < 202.5) return 'S'
@@ -11,3 +11,5 @@ export const windDeg = (deg: number): string  => {
 
     return ''
 }
+
+
