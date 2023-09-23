@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 class Query {
 
-    query = 'London'
+    query = ''
 
     constructor(){
         makeAutoObservable(this)
