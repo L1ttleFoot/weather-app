@@ -8,5 +8,5 @@ export const WeatherIcon = ({weather, ...props}:any) => {
     if (weather === 'Rain') return <IoRainyOutline {...props}/>
     if (weather === 'Mist' || weather === 'Fog') return <RiMistFill {...props}/>
 
-    return <div/>
+    return null
 }
