@@ -37,7 +37,7 @@ export const Card: React.FC<ICard> = observer((props) => {
                 </div>
                 <div className={styles.pressure}>
                     <div style={{fontWeight: 100}}>Pressure</div>
-                    <div style={{fontWeight: 500}}>{main.pressure}</div>
+                    <div style={{fontWeight: 500}}>{main.pressure} hPa</div>
                 </div>
             </div>
         </div>

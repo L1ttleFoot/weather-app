@@ -1,0 +1,20 @@
+.addCard {
+    width: 240px;
+    height: 270px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.addCard:hover {
+    transform: scale(1.03);
+}

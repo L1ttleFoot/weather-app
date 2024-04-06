@@ -1,0 +1,12 @@
+.city {
+    margin: 5px
+}   
+
+.city:hover {
+    cursor: pointer;
+    color: #90caf9
+}
+
+.flagImg {
+    margin-left: 5px;
+}

@@ -1,0 +1,33 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 120px;
+}
+
+.addCard {
+    width: 240px;
+    height: 270px;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.addCard {
+    border: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.addCard:hover {
+    transform: scale(1.03);
+}

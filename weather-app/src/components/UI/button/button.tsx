@@ -1,4 +1,4 @@
-import classes from './button.module.css'
+import styles from './button.module.css'
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick: () => void
@@ -7,10 +7,10 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<IButton> = ({children, ...props}) => {
 
     return(
-        <button className={classes.button} {...props}>
+        <button className={styles.button} {...props}>
             {children}
         </button>
     )
 }
 
-export default Button
+export {Button}

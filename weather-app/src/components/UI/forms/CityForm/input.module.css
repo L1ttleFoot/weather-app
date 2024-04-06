@@ -11,7 +11,7 @@ input:focus {
     outline: 0;
 }
 
-.myInput {
+.inputWrapper {
     display: flex;
     align-items: center;
     margin: 5px;
@@ -23,11 +23,11 @@ input:focus {
     font-size: 18px;
 }
 
-.myInput:hover {
+.inputWrapper:hover {
     border: 2px solid #c1ddf4;
 }
 
-.myInput:focus-within {
+.inputWrapper:focus-within {
     border: 2px solid #90caf9;
     outline: 0;
 }
