@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { ICity } from "./cities";
 
 export interface ICard {
+    id: number,
     weather: {main: string}[],
     main: {
         temp: number,
@@ -32,13 +33,17 @@ class Cards {
 
         const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
+        this.statusCards = 202
         fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${city.lat}&lon=${city.lon}&appid=${apiKey}`)
             .then(res => res.json())
-            .then(data => this.cards.push(data))
+            .then(data => {
+                this.cards.push(data)
+                this.statusCards = 200
+            })
     }
 
-    removeCard(value: string) {
-        this.cards = this.cards.filter(item => item.name !== value)
+    removeCard(value: number) {
+        this.cards = this.cards.filter(item => item.id !== value)
     }
 
 }

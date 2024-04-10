@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../UI/button/button';
-import styles from './appBar.module.css'
 import { isAuth } from '../../functions/isAuth';
-import user from '../../store/user';
 import { observer } from 'mobx-react-lite';
+import user from '../../store/user';
+import styles from './appBar.module.css'
 
 const AppBar = observer(() => {
 
@@ -33,7 +33,7 @@ const AppBar = observer(() => {
     return(
         <div className={styles.appBar}>
             <div className={styles.authButtons}>
-                {appButtons.map(button => 
+                {!isAuth() && appButtons.map(button => 
                     <Button key={button.link} onClick={button.onClick}>
                         {button.title}
                     </Button>

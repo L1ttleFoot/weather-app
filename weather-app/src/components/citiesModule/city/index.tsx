@@ -4,12 +4,14 @@ import styles from './city.module.css'
 
 export const City: React.FC<ICity> = (props) => {
 
-    const {name, country, lat} = props
+    const {name, state, country, lat} = props
+
+    const fullCity = `${name}, ${state ?? ''} ${country}`
 
     return(
         <div key={lat} className={styles.city} onClick={()=>cards.fetchCard(props)}>
             <div>
-                {name}, {country} 
+                {fullCity}
                 <img 
                     className={styles.flagImg} 
                     alt='flag' 
