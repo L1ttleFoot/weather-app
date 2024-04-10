@@ -3,6 +3,7 @@ import { makeAutoObservable } from "mobx";
 export interface ICity {
     name: string,
     country: string,
+    state: string,
     lat: number,
     lon: number
 }
@@ -24,7 +25,7 @@ class Cities {
 
         const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`)
             .then(res => res.json())
             .then(data => {
                 this.cities=([...data])

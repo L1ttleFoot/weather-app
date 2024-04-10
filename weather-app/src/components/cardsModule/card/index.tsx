@@ -8,10 +8,10 @@ import { WeatherIcon } from '../../../consts/consts';
 
 export const Card: React.FC<ICard> = observer((props) => {
 
-    const {weather, main, name, wind} = props
+    const {id, weather, main, name, wind} = props
 
-    const removeHandler = (city: string): void => {
-        cards.removeCard(city)
+    const removeHandler = (id: number): void => {
+        cards.removeCard(id)
     }
 
     const direction = windDeg(wind.deg)
@@ -19,7 +19,7 @@ export const Card: React.FC<ICard> = observer((props) => {
     return (
         <div className={styles.card}>
             <div className={[styles.top, styles[`top-${weather[0].main}`]].join(' ')}>
-                <IoClose className={styles.closeIcon} onClick={()=>removeHandler(name)}/>
+                <IoClose className={styles.closeIcon} onClick={()=>removeHandler(id)}/>
                 <WeatherIcon className={styles.weatherIcon} weather={weather[0].main}/>
                 <div>{weather[0].main}</div>
                 <div style={{fontSize:30}}>{main.temp}&deg;</div>
