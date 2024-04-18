@@ -1,39 +1,35 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from 'mobx';
 
 interface IUser {
-    email: string | null,
-    password: string | null
+    email: string | null;
+    password: string | null;
 }
 
 class User {
-
     user: IUser = {
         email: null,
         password: null,
-    }
+    };
 
-    constructor(){
-        makeAutoObservable(this)
+    constructor() {
+        makeAutoObservable(this);
     }
 
     setUser(user: IUser) {
-        
-        const {email, password} = user
+        const {email, password} = user;
 
-        this.user.email = email
-        this.user.password = password
+        this.user.email = email;
+        this.user.password = password;
     }
 
-    deleteUser(){
+    deleteUser() {
         this.user = {
             email: null,
             password: null,
-        }
-    
+        };
     }
-
 }
 
-const myUser = new User()
+const myUser = new User();
 
-export default myUser
+export default myUser;

@@ -1,28 +1,27 @@
-import { useState } from 'react'
-import { Modal } from '../components/UI/modal/modal'
-import { AppBar } from '../components/appBar/appBar'
-import { CitiesModule } from '../components/citiesModule/citiesModule'
-import { CardsModule } from '../components/cardsModule/cardsModule'
+import {useState} from 'react';
+import {Modal} from '../components/UI/modal/modal';
+import {AppBar} from '../components/appBar/appBar';
+import {CitiesModule} from '../components/citiesModule/citiesModule';
+import {CardsModule} from '../components/cardsModule/cardsModule';
 
 const MainPage = () => {
-
     const onClickHandler = () => {
-        setOpenModal(true)
-    }
+        setOpenModal(true);
+    };
 
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
 
     return (
-        <>  
-            <AppBar/>
-        
-            <CardsModule onClickHandler={onClickHandler}/>
+        <>
+            <AppBar />
+
+            <CardsModule onClickHandler={onClickHandler} />
 
             <Modal openModal={openModal} setOpenModal={setOpenModal}>
-                <CitiesModule/>
+                <CitiesModule />
             </Modal>
         </>
-    )
-}
+    );
+};
 
-export {MainPage}
+export {MainPage};

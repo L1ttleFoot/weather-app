@@ -1,13 +1,12 @@
-import { RegisterModule } from "../components/RegisterModule/RegisterModule"
-import { PageContainer } from "../components/UI/pageContainer/pageContainer";
+import {RegisterModule} from '../components/RegisterModule/RegisterModule';
+import {PageContainer} from '../components/UI/pageContainer/pageContainer';
 
 const RegisterPage = () => {
-
-    return(
+    return (
         <PageContainer>
-            <RegisterModule/>
+            <RegisterModule />
         </PageContainer>
-    )
-}
+    );
+};
 
-export {RegisterPage}
+export {RegisterPage};

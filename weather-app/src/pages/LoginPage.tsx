@@ -1,13 +1,12 @@
-import { LoginModule } from "../components/LoginModule/LoginModule"
-import { PageContainer } from "../components/UI/pageContainer/pageContainer";
+import {LoginModule} from '../components/LoginModule/LoginModule';
+import {PageContainer} from '../components/UI/pageContainer/pageContainer';
 
 const LoginPage = () => {
-
-    return(
+    return (
         <PageContainer>
-            <LoginModule/>
+            <LoginModule />
         </PageContainer>
-    )
-}
+    );
+};
 
-export {LoginPage}
+export {LoginPage};
