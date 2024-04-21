@@ -2,10 +2,12 @@ import './App.css';
 import {MainPage, RegisterPage, LoginPage} from './pages';
 import './firebase';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import user from './store/user';
+import {useUser} from './store/user';
 
 function App() {
-    console.log(user.user.email);
+    const user = useUser((state) => state.user);
+
+    console.log(user.email);
 
     return (
         <div className="App">

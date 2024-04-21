@@ -1,16 +1,17 @@
 import React from 'react';
-import cards, {ICard} from '../../../store/cards';
+import {ICard, useCard} from '../../../store/cards';
 import {IoClose} from 'react-icons/io5';
-import {observer} from 'mobx-react-lite';
 import styles from './card.module.css';
 import {windDeg} from '../../../functions/windDeg';
 import {WeatherIcon} from '../../../consts/consts';
 
-export const Card: React.FC<ICard> = observer((props) => {
+export const Card: React.FC<ICard> = (props) => {
     const {id, weather, main, name, wind} = props;
 
+    const removeCard = useCard((state) => state.removeCard);
+
     const removeHandler = (id: number): void => {
-        cards.removeCard(id);
+        removeCard(id);
     };
 
     const direction = windDeg(wind.deg);
@@ -43,4 +44,4 @@ export const Card: React.FC<ICard> = observer((props) => {
             </div>
         </div>
     );
-});
+};

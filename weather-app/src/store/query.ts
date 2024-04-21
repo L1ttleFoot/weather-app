@@ -1,19 +1,15 @@
-import {makeAutoObservable} from 'mobx';
+import {create} from 'zustand';
 
-class Query {
-    query = '';
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    setQuery(value: string) {
-        const capitalizeValue = value.charAt(0).toUpperCase() + value.slice(1);
-
-        this.query = capitalizeValue;
-    }
+interface QueryState {
+    query: string;
+    setQuery: (value: string) => void;
 }
 
-const myQuery = new Query();
+export const useQuery = create<QueryState>((set) => ({
+    query: '',
+    setQuery: (value: string) => {
+        const capitalizeValue = value.charAt(0).toUpperCase() + value.slice(1);
 
-export default myQuery;
+        set(() => ({query: capitalizeValue}));
+    },
+}));

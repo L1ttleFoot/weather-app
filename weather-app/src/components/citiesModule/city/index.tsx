@@ -1,4 +1,4 @@
-import cards from '../../../store/cards';
+import {useCard} from '../../../store/cards';
 import {ICity} from '../../../store/cities';
 import styles from './city.module.css';
 
@@ -7,8 +7,10 @@ export const City: React.FC<ICity> = (props) => {
 
     const fullCity = `${name}, ${state ?? ''} ${country}`;
 
+    const fetchCard = useCard((state) => state.fetchCard);
+
     return (
-        <div key={lat} className={styles.city} onClick={() => cards.fetchCard(props)}>
+        <div key={lat} className={styles.city} onClick={() => fetchCard(props)}>
             <div>
                 {fullCity}
                 <img

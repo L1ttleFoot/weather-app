@@ -1,5 +1,5 @@
-import cities from '../../../store/cities';
-import query from '../../../store/query';
+import {useCity} from '../../../store/cities';
+import {useQuery} from '../../../store/query';
 import styles from './modal.module.css';
 
 interface IModal {
@@ -9,10 +9,13 @@ interface IModal {
 }
 
 export const Modal: React.FC<IModal> = ({openModal, setOpenModal, children}) => {
+    const setQuery = useQuery((state) => state.setQuery);
+    const clearCitys = useCity((state) => state.clearCitys);
+
     const modalHandler = () => {
         setOpenModal(false);
-        query.setQuery('');
-        cities.clearCitys();
+        setQuery('');
+        clearCitys();
     };
 
     return (

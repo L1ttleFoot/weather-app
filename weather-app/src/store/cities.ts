@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {create} from 'zustand';
 
 export interface ICity {
     name: string;
@@ -8,29 +8,24 @@ export interface ICity {
     lon: number;
 }
 
-class Cities {
-    cities: ICity[] = [];
-    statusCities = 200;
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    clearCitys() {
-        this.cities = [];
-    }
-
-    fetchCities(value: string) {
-        const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`)
-            .then((res) => res.json())
-            .then((data) => {
-                this.cities = [...data];
-            });
-    }
+interface CitiesState {
+    cities: ICity[];
+    clearCitys: () => void;
+    fetchCities: (value: string) => void;
 }
 
-const myCities = new Cities();
+export const useCity = create<CitiesState>((set) => ({
+    cities: [],
+    clearCitys: () => set(() => ({cities: []})),
+    fetchCities: async (value) => {
+        const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-export default myCities;
+        const response = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`,
+        );
+
+        const data = await response.json();
+
+        set(() => ({cities: [...data]}));
+    },
+}));

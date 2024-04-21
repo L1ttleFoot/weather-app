@@ -1,41 +1,41 @@
-import {observer} from 'mobx-react-lite';
 import React from 'react';
-import query from '../../../../store/query';
+import {useQuery} from '../../../../store/query';
 import styles from './input.module.css';
-import cities from '../../../../store/cities';
+import {useCity} from '../../../../store/cities';
 import {IoSearchOutline} from 'react-icons/io5';
 
 interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
     onChange?: (e: any) => void;
 }
 
-const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+/* const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
         cities.fetchCities(query.query);
     }
-};
+}; */
 
-const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    cities.fetchCities(query.query);
-};
+const CityForm: React.FC<IInput> = (props) => {
+    const fetchCities = useCity((state) => state.fetchCities);
+    const query = useQuery((state) => state.query);
+    const setQuery = useQuery((state) => state.setQuery);
 
-const CityForm: React.FC<IInput> = observer((props) => {
+    const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        fetchCities(query);
+    };
+
     return (
         <form className={styles.inputWrapper} onSubmit={onSubmitHandler}>
             <input
                 {...props}
                 className={styles.input}
-                value={query.query}
+                value={query}
                 //onKeyUp={(e)=>onKeyUpHandler(e)}
-                onChange={(e) => query.setQuery(e.target.value)}
+                onChange={(e) => setQuery(e.target.value)}
             />
-            <IoSearchOutline
-                className={styles.seatchButton}
-                onClick={() => cities.fetchCities(query.query)}
-            />
+            <IoSearchOutline className={styles.seatchButton} onClick={() => fetchCities(query)} />
         </form>
     );
-});
+};
 
 export {CityForm};

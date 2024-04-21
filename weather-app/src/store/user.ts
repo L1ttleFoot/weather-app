@@ -1,35 +1,22 @@
-import {makeAutoObservable} from 'mobx';
+import {create} from 'zustand';
 
 interface IUser {
     email: string | null;
     password: string | null;
 }
 
-class User {
-    user: IUser = {
-        email: null,
-        password: null,
-    };
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    setUser(user: IUser) {
-        const {email, password} = user;
-
-        this.user.email = email;
-        this.user.password = password;
-    }
-
-    deleteUser() {
-        this.user = {
-            email: null,
-            password: null,
-        };
-    }
+interface UserState {
+    user: IUser;
+    setUser: (user: IUser) => void;
+    deleteUser: () => void;
 }
 
-const myUser = new User();
+export const useUser = create<UserState>((set) => ({
+    user: {
+        email: null,
+        password: null,
+    },
 
-export default myUser;
+    setUser: ({email, password}) => set(() => ({user: {email, password}})),
+    deleteUser: () => set(() => ({user: {email: null, password: null}})),
+}));

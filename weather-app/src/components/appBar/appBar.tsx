@@ -1,15 +1,17 @@
 import {useNavigate} from 'react-router-dom';
 import {Button} from '../UI/button/button';
-import {isAuth} from '../../functions/isAuth';
+import {useAuth} from '../../hooks/useAuth';
 import {observer} from 'mobx-react-lite';
-import user from '../../store/user';
+import {useUser} from '../../store/user';
 import styles from './appBar.module.css';
 
 const AppBar = observer(() => {
     const navigate = useNavigate();
 
+    const deleteUser = useUser((state) => state.deleteUser);
+
     const onclickHandlerLogout = () => {
-        user.deleteUser();
+        deleteUser();
     };
 
     const appButtons = [
@@ -32,7 +34,7 @@ const AppBar = observer(() => {
     return (
         <div className={styles.appBar}>
             <div className={styles.authButtons}>
-                {!isAuth() &&
+                {!useAuth() &&
                     appButtons.map((button) => (
                         <Button key={button.link} onClick={button.onClick}>
                             {button.title}
@@ -40,7 +42,7 @@ const AppBar = observer(() => {
                     ))}
             </div>
 
-            {isAuth() && <Button onClick={onclickHandlerLogout}>Выход</Button>}
+            {useAuth() && <Button onClick={onclickHandlerLogout}>Выход</Button>}
         </div>
     );
 });
